@@ -14,9 +14,7 @@ class Contact {
 
 class UI {
   static displayContact() {
-
     const contacts = Store.getcontact();
-
     contacts.forEach((contact) => UI.addContactToList(contact));
   }
 
@@ -41,9 +39,8 @@ class UI {
 
 
   static deleteContact(el) {
-    // if element contains .delete class
+   
     if (el.classList.contains('delete')) {
-      // remove <a> -> <td> -> <tr>       
       el.parentElement.parentElement.remove();
     }
   }
@@ -63,7 +60,7 @@ class Store {
     return contacts;
   }
 
-  static addcontat(contact) {
+  static addcontact(contact) {
     const contacts = Store.getcontact();
     contacts.push(contact);
     localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -118,7 +115,7 @@ Myform.addEventListener('submit', (e) => {
     // console.log(genderInput.value);
     const contact = new Contact(subInput.value, masInput.value, nameInput.value, genderInput.value, phoneInput.value, emailInput.value);
     UI.addContactToList(contact);
-
+    Store.addcontact(contact);
     subInput.value = '';
     masInput.value = '';
     genderInput.value = '';
